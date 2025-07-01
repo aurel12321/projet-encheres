@@ -1,32 +1,27 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accueil - ENI-Enchères</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>ENI-Enchères</h1>
-    <nav>
-      <a href="#">S'inscrire</a> - <a href="#">Se connecter</a>
-    </nav>
-  </header>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+  <head th:replace="~{fragments/fragment-head :: head('Connexion - ENI-Enchères')}"></head>
+  <body> <!-- à mettre dans le body de toutes les view une fois que la BDD est  faite => th:classappend="${user.main} == 'gaucher' ? 'gaucher' : 'droitier'" -->
+
+ <header th:replace="~{fragments/fragment-entete :: entete}"></header>
 
   <main>
+ 
     <section class="filtres">
-      <h2>Filtres :</h2>
-      <label for="categorie">Catégories</label>
-      <select id="categorie" name="categorie">
-        <option value="">Toutes</option>
-        <!-- Autres catégories -->
-      </select>
+  <h2>Filtres :</h2>
+  <form method="get" th:action="@{/encheres/filtrer}">
+    <label for="categorie">Catégories</label>
+    <select id="categorie" name="categorie">
+      <option value="">Toutes</option>
+      <!-- Autres catégories -->
+    </select>
 
-      <input type="text" placeholder="Le nom de l'article contient" name="nomArticle" />
+    <input type="text" placeholder="Le nom de l'article contient" name="nomArticle" />
 
-      <button type="submit">Rechercher</button>
-    </section>
+    <button type="submit">Rechercher</button>
+  </form>
+</section>
 
     <section class="articles">
       <article class="card">
@@ -53,6 +48,7 @@
         </div>
       </article>
     </section>
+    
   </main>
 </body>
 </html>
